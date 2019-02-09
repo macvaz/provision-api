@@ -1,6 +1,22 @@
-plugins {
-    id 'org.jetbrains.kotlin.jvm' version '1.3.11'
+buildscript {
+    ext {
+        kotlinVersion = '1.2.41'
+        springBootVersion = '2.1.2.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
+        classpath("org.jetbrains.kotlin:kotlin-allopen:${kotlinVersion}")
+    }
 }
+
+apply plugin: 'kotlin'
+apply plugin: 'kotlin-spring'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
 
 group 'com.repsol.hdma.platform.api'
 version '1.0-SNAPSHOT'
@@ -18,6 +34,12 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
     compile "org.jetbrains.exposed:exposed:0.10.4"
     compile "org.postgresql:postgresql:42.2.2"
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.springframework.boot:spring-boot-starter-mustache')
+    compile('com.fasterxml.jackson.module:jackson-module-kotlin')
+    compile('org.jetbrains.kotlin:kotlin-stdlib-jdk8')
+    compile('org.jetbrains.kotlin:kotlin-reflect')
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
 
